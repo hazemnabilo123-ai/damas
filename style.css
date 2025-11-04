@@ -12,17 +12,17 @@
 }
 
 .nave-bar a {
+  box-shadow: 20px;
   align-items: center;
-  padding: 10px ;
+  padding: 10px;
   text-decoration: none;
   color: rgb(0, 0, 0);
   transform: scale(1.05);
   color: #ffff;
 }
 
-
 div img {
-  width: 80px;
+  width: 60px;
   border-radius: 50px;
 }
 
@@ -40,42 +40,14 @@ button {
   background: none;
 }
 
+hr {
+  margin: 0 200px 0 200px;
+  background-color: #000000;
+  height: 5px;
+}
 
 /*  */
 
-.line2 {
-  background-image: url(background1.jpg);
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  color: aliceblue;
-  text-align: center;
-  justify-content: space-between;
-  border-radius: 0;
-  display: flex;
-  padding: 100px 50px;
-}
-
-.line2 img {
-  width: 100px;
-  height: 200px;
-  justify-content: space-between;
-padding: 20px;
-}
-
-.line2 h1 {
-
-
-  border-radius: 50px;
-}
-
-.prodect {
-  justify-content: center;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  padding: 10px;
-}
 .item {
   background-color: #0b0b0bcb;
   color: #ffff;
@@ -86,28 +58,170 @@ padding: 20px;
 
 .item img {
   width: 100%;
-  height: 60%;
+  height: 200px;
 }
 
 .pro {
-  color: #ffff;
-  text-align: center;
-  background-color: rgba(0, 0, 0, 0.725);
-  border-radius: 20px;
-
- 
+  color: #000000;
+text-align: center;
+  margin-right: 10px;
+  padding-right: 10px;
 }
 
+.prodect {
+  display: flex;
+  flex-wrap: nowrap; /* يمنعهم من النزول تحت بعض */
+  overflow-x: auto; /* يخليهم يتمشّوا يمين وشمال */
+  gap: 10px;
+  direction: rtl;
+  justify-content: center;
+  margin: 0 10px 0 10px;
 
+  padding: 20px;
+  background-color: #7b6335;
+}
+.item {
+  flex: 0 0 auto; /* يخلي كل عنصر ياخد عرضه الطبيعي */
+}
 
+/* شكل العنصر */
+.item {
+  background-color: #0b0b0bcb;
+  color: #ffff;
+  text-align: center;
+  padding: 15px;
+  width: 150px;
+  border-radius: 10px;
+  transition: transform 0.2s;
+}
 
+.item:hover {
+  transform: scale(1.05);
+}
+
+.item img {
+  width: 100%;
+  height: 60%;
+  border-radius: 8px;
+}
+
+/* للموبايل */
 @media (max-width: 768px) {
-  /* تغييرات للشاشات الصغيرة */
+  .prodect {
+    flex-wrap: nowrap; /* خليه صف واحد */
+    overflow-x: auto; /* يخليه قابل للتمرير يمين وشمال */
+    justify-content: flex-start;
+  }
+
+  .item {
+    flex: 0 0 auto; /* يمنع تمدد العناصر */
+    width: 120px; /* حجم مناسب للموبايل */
+    margin-right: 10px;
+  }
+
+  .prodect::-webkit-scrollbar {
+    height: 6px;
+  }
+
+  .prodect::-webkit-scrollbar-thumb {
+    background-color: #000000;
+
+    border-radius: 10px;
+  }
+  .slider img {
+          object-fit: cover;
+
+  }
+  .slider {
+    border-radius: 0;
+  }
 }
 
 @media (min-width: 768px) {
+  .prodect {
+    flex-wrap: nowrap; /* خليه صف واحد */
+    overflow-x: auto; /* يخليه قابل للتمرير يمين وشمال */
+    justify-content: flex-start;
+  }
+
+  .item {
+    flex: 0 0 auto; /* يمنع تمدد العناصر */
+    width: 120px; /* حجم مناسب للموبايل */
+    margin-right: 10px;
+  }
+
+  .prodect::-webkit-scrollbar {
+    height: 6px;
+  }
+
+  .prodect::-webkit-scrollbar-thumb {
+    background-color: #000000;
+    border-radius: 10px;
+  }
+
 }
 
 
+.slider {
+      position: relative;
+      width: 80%;
+      max-width: 600px;
+      height: 450px;
+      overflow: hidden;
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+    }
+    /* الخلفية الضبابية */
+    .blur-bg {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      filter: blur(20px);
+      transform: scale(1.1); /* عشان الحواف متبانش مقصوصة */
+      transition: background-image 1s ease-in-out;
+      z-index: 0;
+    }
+    .slider img {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      opacity: 0;
+  
+      transition: opacity 1s ease-in-out;
+    }
+
+    .slider img.active {
+      opacity: 1;
+    }
+
+    /* الأزرار */
+    .controls {
+      position: absolute;
+      top: 50%;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      transform: translateY(-50%);
+      padding: 0 0px;
+    }
+
+    .controls button {
+      background: rgba(0, 0, 0, 0.5);
+      border: none;
+      color: white;
+      font-size: 25px;
+      padding: 15px 15px;
+      cursor: pointer;
+      border-radius: 50%;
+      transition: 0.3s;
+    }
+
+    .controls button:hover {
+      background: rgba(255, 255, 255, 0.3);
+    }
 
 
